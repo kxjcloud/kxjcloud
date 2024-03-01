@@ -53,7 +53,14 @@
             let data = new Array();
             let id = $("#id").val();
             if (id) {
-                $.each(source.data, (i, v) => { if (v.Name.indexOf(id) != -1) data.push(v); });
+                $.each(source.data, (i, v) => { 
+                    if (v.Name.indexOf(id) != -1){
+                        let item = v;
+                        let text = v.ContentText;                        
+                        v.ContentText = text.replace("&nbsp","[空格]");
+                        data.push(v);
+                    }
+                });
             }else{
                 data = source;
             }
